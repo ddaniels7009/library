@@ -2,7 +2,7 @@
 
 const addButton = document.getElementById("addButton")
 
-const displayText = document.getElementById("display");
+
 const editSection = document.getElementById("editSection");
 const bookSection = document.getElementById("books");
 
@@ -62,31 +62,44 @@ function createBookBox(){
     let box = document.createElement("div");
     bookSection.appendChild(box);
     box.classList.add("boxes")
+    box.setAttribute("data-number", count);
     box.innerText = (myLibrary[count].info())
+    //count++;
+
+    let buttonContainer = document.createElement("div");
+    box.appendChild(buttonContainer);
+    buttonContainer.classList.add("buttonContainer");
+
+    // Just need to add remove button
+    let deleteButton = document.createElement("button");
+    deleteButton.classList.add("deleteButton");
+    deleteButton.innerText = "Remove";
+    buttonContainer.appendChild(deleteButton);
+    deleteButton.addEventListener('click', function () { bookSection.removeChild(box) });
+
+    let readStatusButton = document.createElement("button");
+    readStatusButton.classList.add("changeStatus");
+    readStatusButton.innerText = "Change Read Status";
+    buttonContainer.appendChild(readStatusButton);
+
+    
+    readStatusButton.addEventListener('click', function () { myLibrary[parseInt(box.dataset.number)].read = "Unread"; box.innerText = myLibrary[parseInt(box.dataset.number)].info();
+    });
+    //myLibrary[count].read = "kill"
     count++;
-// Just need to add 
+    
+    
 }
 
-function display(item) {
+//*Needs Implemented **
+function removeBook(number) {
 
-    displayText.innerText += item.info() + "\n" + "\n";
+    number = parseInt(number);
 
-
-}
-
-function removeBook(array) {
-
-    array.splice(0, 1);
+    myLibrary.splice(number, number+1);
     
     }
     
-
-
-
-// Clear display each time user presses view collection button.
-function clearDisplay() {
-    displayText.innerText = "";
-}
 
 // Bring up a form when the add book button is pressed
 function createForm() {
@@ -149,13 +162,13 @@ function createForm() {
     form.appendChild(readOption);
 
     readOption.setAttribute("for", "read");
-    readOption.innerHTML = "Read";
+    readOption.innerHTML = "Read Status";
 
     form.appendChild(readInput);
-    readInput.setAttribute("type", "radio");
+    readInput.setAttribute("type", "text");
     readInput.setAttribute("id", "read");
     readInput.setAttribute("name", "read");
-    readInput.setAttribute("value", "Read")
+    readInput.setAttribute("value", "")
     //End
 
 
@@ -168,8 +181,8 @@ function createForm() {
             document.getElementById("read").value);
         submitButton.classList.toggle("invisible");
         readInput.classList.toggle("input,input[type='radio'][value='Unread']");
-        clearDisplay();
-        myLibrary.forEach(display);
+        
+        
         //uncheck();
         form.classList.toggle("invisible"); // keep
 
@@ -196,4 +209,4 @@ addBookToLibrary("The Hail Mary", "Andy Weir", 497, "not read yet");
 addBookToLibrary("The House in the Cerulean Sea", "TJ Klune", 393, "not read yet");
 addBookToLibrary("A Storm of Swords", "George R.R. Martin", 1008, "not read yet");
 
-myLibrary.forEach(display);
+

@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
 
-    background-color: cadetblue;
+    background-color: rgba(0, 122, 71, 0.466);
 
     display: flex;
     flex-direction: column;
@@ -11,7 +11,6 @@ body {
 
     font-family: 'Cinzel', serif;
 
-    
 }
 
 h1 {
@@ -21,7 +20,6 @@ h1 {
 }
 
 h2 {
-
     padding-left: 200;
     font-size: 35;
     margin-bottom: 0;
@@ -42,6 +40,8 @@ button {
 }
 button:hover{
     cursor: pointer;
+    background-color: rgba(211, 198, 166, 0.582);
+    
 }
 
 .container{
@@ -94,11 +94,11 @@ button:hover{
 form {
     
     padding: 5;
-    height: 200px;
+    height: 210px;
     width: 260px;
     background-color: whitesmoke;
     border-style: solid;
-    border-color: bisque;
+    border-color: rgba(253, 201, 137, 0.555);
     border-width: 10;
     font-weight: 600;
     
@@ -129,15 +129,42 @@ form {
 
 .boxes {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
     background-color: rgb(255, 243, 226);
-    height: 135px;
+    height: 185px;
     width:fit-content;
     font-size: 20px;
     margin-left: 40;
     font-weight: 600;
+}
 
-    
-    
+input[type=text] {
+    width: 100%;
+    font-size: 20;
+    font-weight: 500;
+    border: 1px solid #ccc;
+    padding: 2px;
+    display: inline-block;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.deleteButton{
+    width: 100px;
+    height: 40px;
+
+}
+.changeStatus{
+    height: 40px;
+    width: fit-content;
+}
+
+
+.buttonContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 350;
+    height: 40px;
+    background-color: rgb(255, 243, 226);
 }
